@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const env = require("dotenv").config().parsed;
 const API = require("./Routes/API");
 const server = express();
 const cors = require("cors");
@@ -16,7 +17,7 @@ server.set("view engine", "ejs");
 server.use(express.json());
 server.use(express.static("public"));
 server.use(cookieParser());
-const PORT = 9000;
+const PORT = env.PORT || 5000;
 const dbURI = process.env.MONGO_URI;
 mongoose
   .connect(dbURI, {
